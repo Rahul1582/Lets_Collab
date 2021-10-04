@@ -8,23 +8,21 @@ const user = new Schema({
         required:true
     },
 
-    email :{
+   base64String:{
         type: String,
         required: true,
-        unique:true
     },
 
-    password :{
-        type: String,
-        required: true
-    },
-
-    joinedrooms:[
+    roomid:[
         {
             type: mongoose.Schema.Types.ObjectID,
             ref: 'chatroom',
         }
-    ]
-});
+    ],
+    },
+    {
+        timestamps: true, 
+    }
+);
 
-module.exports = mongoose.model('User',user);
+module.exports = mongoose.model('file',file);
