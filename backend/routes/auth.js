@@ -4,8 +4,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validregister = require("../Validation/register");
 const validlogin = require("../Validation/login");
-const User = require("../models/newuser");
-const secret = require("../Config/sectoken");
+const User = require("../models/user");
+const secret = require("../config/sectoken");
 
 const saltRounds = 8;
 
