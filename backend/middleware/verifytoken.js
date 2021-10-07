@@ -19,7 +19,6 @@ function verifyToken(req, res, next) {
          message: "Failed to authenticate token.",
        });
      }
-   //   console.log(decoded);
    
      req.user = decoded.user;
      next();

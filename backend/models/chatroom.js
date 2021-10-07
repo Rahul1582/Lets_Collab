@@ -11,7 +11,7 @@ const chatbody = {
         type: String,
         required:true,
     },
-    umessage:{
+    message:{
         type: String,
         required:true,
     },
