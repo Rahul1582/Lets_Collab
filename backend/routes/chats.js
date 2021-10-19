@@ -41,7 +41,7 @@ router.get('/chatroom/:roomid', verifytoken, (req,res)=>{
 
     const roomid = req.params.roomid;
 
-    chatroom.findById(roomid, (err,chatroom)=>{
+    Chatroom.findById(roomid, (err,chatroom)=>{
 
         if(err){
 
@@ -50,15 +50,22 @@ router.get('/chatroom/:roomid', verifytoken, (req,res)=>{
 
         else{
 
-            chatroom.populate('joinedusers','name');
+            // chatroom.populate('joinedusers');
+            chatroom.joinedusers.forEach(function(each) {
+                console.log('Office name: ', each.name);
+            });      //  chatroom.populate('joinedusers');
 
-            const users=[];
+            console.log(chatroom.joinedusers[0]);
 
-            for(const user of chatroom.joinedusers){
-                users.push(user.name);
-            }
+            // const users=chatroom.joinedusers.name;
 
-            return res.json({status:200, chatroom, users, message:"Success"});
+            // console.log(room);
+
+            // for(const user of room){
+            //     console.log(user);
+            // }
+
+            return res.json({status:200, chatroom, message:"Success"});
 
         }
     })
@@ -106,10 +113,6 @@ router.post('/create-chatroom',verifytoken, (req,res)=>{
                 //  });
 
                 //  return res.json({status: 200, message: "Chatroom Successfully Created"});
-
-
-                    console.log(room._id);
-
 
                 User.findOneAndUpdate({_id:req.user.id},{$push:{joinedrooms:room._id}},{new:true},(err,user)=>{
 

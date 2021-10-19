@@ -22,7 +22,7 @@ const user = new Schema({
     joinedrooms:[
         {
             type: mongoose.Schema.Types.ObjectID,
-            ref: 'chatroom',
+            ref: 'Chatroom',
         }
     ]
 });

@@ -42,19 +42,17 @@ const chatroom = new Schema({
     joinedusers:[
         {
             type: mongoose.Schema.Types.ObjectID,
-            ref: 'user',
+            ref: 'User',
         }
     ],
 
     lastmsg: {
         type: String,
       },
-
-      
     },
     {
       timestamps: true, 
     }
 );
 
-module.exports = mongoose.model('chatroom',chatroom);
+module.exports = mongoose.model('Chatroom',chatroom);
