@@ -36,7 +36,7 @@ const chatroom = new Schema({
     },
 
     msgarray:{
-        type: [ChatBody],
+        type: [chatbody],
     },
 
     joinedusers:[
@@ -50,10 +50,7 @@ const chatroom = new Schema({
         type: String,
       },
 
-    meet: {
-        type: mongoose.Schema.Types.ObjectID,
-        ref:'remainder',
-      },
+      
     },
     {
       timestamps: true, 

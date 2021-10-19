@@ -60,6 +60,7 @@ router.post('/register', (req,res,next) =>{
                           } 
                           
                           else {
+                              
                             return res.json({status: 200, message: "Registered Successfully | Login to Continue",isValid});
                         }
                     }
