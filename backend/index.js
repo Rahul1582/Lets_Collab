@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const auth = require("./routes/auth");
 const chats = require("./routes/chats");
+const files = require("./routes/files");
 
 const app= express();
 app.use(cors());
@@ -13,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connectdb();
 
 // routes
-
 app.use("/auth",auth);
 app.use("/chats",chats);
+app.use("/files",files);
 
 const PORT = process.env.PORT || 8000;
 

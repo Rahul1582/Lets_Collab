@@ -11,7 +11,7 @@ router.get('/chatlist',verifytoken, (req,res)=>{
 
     const userid = req.user.id;
 
-    User.findOne({_id: userid}, (err,user)=>{
+    User.findOne({_id: userid}, async (err,user)=>{
 
         if(err){
 
@@ -20,13 +20,13 @@ router.get('/chatlist',verifytoken, (req,res)=>{
 
         else{
 
-            user.populate({
+            const userdetails = await User.findOne({_id: userid}).populate({
 
                 path:'joinedrooms',
                 options:{ sort:{'updatedAt':-1}}
             })
         
-            const chatlists = user.joinedrooms;
+            const chatlists = userdetails.joinedrooms;
 
             return res.json({status:200 , message : "Successful", chatlists});
 
@@ -40,9 +40,11 @@ router.get('/chatlist',verifytoken, (req,res)=>{
 router.get('/chatroom/:roomid', verifytoken, (req,res)=>{
 
     const roomid = req.params.roomid;
+    
+    
+    Chatroom.findById(roomid, async (err,chatroom)=>{
 
-    Chatroom.findById(roomid, (err,chatroom)=>{
-
+        
         if(err){
 
             return res.json({status:500 , message : "Internal Server Error"});
@@ -50,23 +52,18 @@ router.get('/chatroom/:roomid', verifytoken, (req,res)=>{
 
         else{
 
-            // chatroom.populate('joinedusers');
-            chatroom.joinedusers.forEach(function(each) {
-                console.log('Office name: ', each.name);
-            });      //  chatroom.populate('joinedusers');
+            const usernames = [];
 
-            console.log(chatroom.joinedusers[0]);
+            const room = await Chatroom.findById(roomid).populate('joinedusers','name');
 
-            // const users=chatroom.joinedusers.name;
+            // console.log(room.joinedusers);
 
-            // console.log(room);
+            for(const user of room.joinedusers){
+                usernames.push(user.name);
+            }
 
-            // for(const user of room){
-            //     console.log(user);
-            // }
-
-            return res.json({status:200, chatroom, message:"Success"});
-
+            return res.json({status:200, chatroom, usernames, message:"Success"});
+        
         }
     })
 
@@ -154,7 +151,7 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
 
             if(chatroom.joinedusers.includes(userid)){
 
-                return res.json({status:200 , message : "User Already Joined"});
+                return res.json({status:400 , message : "User Already Joined"});
             }
 
             else{

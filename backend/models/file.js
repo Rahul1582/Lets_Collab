@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const user = new Schema({
+const file = new Schema({
 
     name : {
         type: String,
@@ -16,7 +16,7 @@ const user = new Schema({
     roomid:[
         {
             type: mongoose.Schema.Types.ObjectID,
-            ref: 'chatroom',
+            ref: 'Chatroom',
         }
     ],
     },
@@ -25,4 +25,4 @@ const user = new Schema({
     }
 );
 
-module.exports = mongoose.model('file',file);
+module.exports = mongoose.model('File',file);
