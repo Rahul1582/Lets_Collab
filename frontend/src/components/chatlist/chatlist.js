@@ -97,12 +97,11 @@ export default class chatlist extends Component {
           <i className="fa fa-plus"></i>
           <span>New conversation</span>
         </button>
+        <br/>
         <div className="chatlist__heading">
-          <h2>Chats</h2>
-          <button className="btn-nobg">
-            <i className="fa fa-ellipsis-h"></i>
-          </button>
+          <h2>ALL ROOMS</h2>
         </div>
+        <br/>
         <div className="chatList__search">
           <div className="search_wrap">
             <input type="text" placeholder="Search Here" required />

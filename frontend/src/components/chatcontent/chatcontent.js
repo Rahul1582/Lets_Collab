@@ -1,7 +1,5 @@
-import React, { Component, useState, createRef, useEffect } from "react";
-
+import React, { Component,createRef } from "react";
 import "./chatcontent.css";
-import Avatar from "../chatlist/avatar";
 import ChatItem from "./chatitem";
 
 export default class chatcontent extends Component {
@@ -99,10 +97,6 @@ export default class chatcontent extends Component {
         <div className="content__header">
           <div className="blocks">
             <div className="current-chatting-user">
-              <Avatar
-                isOnline="active"
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU"
-              />
               <p>Tim Hover</p>
             </div>
           </div>

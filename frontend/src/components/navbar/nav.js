@@ -27,13 +27,16 @@ export default function Nav(){
       }
     ],
     logo: {
-      text: 'CHAT Application'
+      text: 'MERN CHAT Application'
     },
 
     style: {
       barStyles: {
-        background: '#121212',
-      },
+        background: '#282828',
+        buttonColor: '#4664ff'
+        
+      }
+      ,
       sidebarStyles: {
         background: '#222',
         buttonColor: 'white'
@@ -41,24 +44,12 @@ export default function Nav(){
       linkStyles: {
         color: 'white',
         fontSize: '25px',
-        fontFamily: [
-          'Nunito',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif'
-        ].join(','),
+        fontFamily: 'Bakbak One'
       },
       logoStyles: {
         fontSize: '25px',
         color: 'white',
-        fontFamily: [
-          'Nunito',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          'sans-serif'
-        ].join(','),
+        fontFamily:'Bakbak One'
       }
     }
   }

@@ -1,23 +1,7 @@
-/* 
-* {
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-}
-#root {
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-} */
-
 @font-face {
   font-family: 'Nunito';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 800;
   font-display: swap;
   src: local('Nunito Regular'), local('Nunito-Regular'), 
    url(https://fonts.gstatic.com/s/nunito/v11/XRXV3I6Li01BKofINeaBTMnFcQ.woff2) 
@@ -26,3 +10,5 @@ body {
     U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, 
     U+2215, U+FEFF, U+FFFD;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Shalimar&display=swap');

@@ -17,7 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const themeDark = createTheme({
   palette: {
     background: {
-      default: "#121212"
+      default: "#282828"
     },
     text: {
       primary: "#ffffff"

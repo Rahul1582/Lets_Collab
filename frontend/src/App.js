@@ -6,6 +6,7 @@ import ChatBody from "./components/chatbody/chatbody";
 import Home from "./components/home/home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Dashboard from "./components/dashboard/dashboard";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path='/dashboard' component={Dashboard}/>
     </Switch>
 
   </Router>
