@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -36,14 +37,53 @@ const themeDark = createTheme({
 
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-      });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [successful, setSuccessful] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const onchangeemail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
+
+  const onchangepassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const handleLogin = (e) => {
+
+    e.preventDefault();
+
+    setMessage("");
+    setSuccessful(false);
+
+    axios.post('http://localhost:8000/auth/login',{
+            email:email,
+            password:password
+        }).then(function (res){
+           
+            const newmessage = res.data.message || res.data.flaws.name || res.data.flaws.email || res.data.flaws.password;
+            setMessage(newmessage);
+            const valid = res.data.isValid;
+
+            if(valid && res.data.status===200){
+              
+              setSuccessful(true);
+              localStorage.setItem('usertoken', res.data.token);
+              localStorage.setItem('loggedin',true);
+
+              window.location='/dashboard';
+
+            }
+
+        }).catch(function (err){
+          setMessage("Check your parameters. Login not successful!!");
+          setSuccessful(false);  
+        })
+
   };
 
 
@@ -65,7 +105,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h2" >
            SIGN IN
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
             <TextField sx={{ input: { color: 'black' ,bgcolor: 'white'} }}
               margin="normal"
               required
@@ -75,7 +115,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-
+              onChange={onchangeemail}
             />
             <TextField sx={{ input: { color: 'black' ,bgcolor: 'white'} }}
               margin="normal"
@@ -86,6 +126,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={onchangepassword}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -106,10 +147,23 @@ export default function SignIn() {
                   <Typography  align="center" color="#28a745">{"Don't have an account? Sign Up"}</Typography>
                 </Link>
               </Grid>
+
+             <br/>
+
+              {message && (
+            <div className="form-group">
+              <div
+                className={ successful ? "alert alert-success": "alert alert-danger" }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
             </Grid>
+
           </Box>
         </Box>
-
 
       </Container>
     </ThemeProvider>

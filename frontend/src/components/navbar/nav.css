@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Shalimar&display=swap');
+.font{
+    font-size: 30px;
+    
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    background-color:#282828;
+    font-family: 'Bakbak One', cursive;
+    font-weight:bolder;
+    font-variant: normal;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    margin-left: 50px;
+    padding-left: 10px;
+
+}
+
+.collapse.show {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

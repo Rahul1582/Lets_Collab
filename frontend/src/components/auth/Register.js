@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React,{useState} from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 
 const themeDark = createTheme({
@@ -34,18 +36,62 @@ const themeDark = createTheme({
   }
 });
 
-const theme = createTheme();
+export default function SignUp() {
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const [name, setname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [successful, setSuccessful] = useState(false);
+  const [message, setMessage] = useState("");
 
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-      });
+
+  const onchangename = (e) => {
+    const name = e.target.value;
+    setname(name);
   };
+
+  const onchangeemail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
+
+  const onchangepassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+
+  const handleRegister = (e) => {
+
+    e.preventDefault();
+
+    setMessage("");
+    setSuccessful(false);
+
+    axios.post('http://localhost:8000/auth/register',{
+            name: name,
+            email:email,
+            password:password
+        }).then(function (res){
+            console.log(res);
+            const newmessage = res.data.message || res.data.flaws.name || res.data.flaws.email || res.data.flaws.password;
+            setMessage(newmessage);
+            const valid = res.data.isValid;
+
+            if(valid && res.data.status===200){
+              setSuccessful(true);
+              // window.location='/login';
+            }
+            
+         
+        }).catch(function (err){
+          setMessage("Check your parameters. Registration not successful!!");
+          setSuccessful(false);
+           
+        })
+    
+  };
+
 
 
   return (
@@ -66,7 +112,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h2" >
            SIGN UP
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
           <TextField sx={{ input: { color: 'black' ,bgcolor: 'white'} }}
               margin="normal"
               required
@@ -76,7 +122,7 @@ export default function SignIn() {
               name="name"
               autoComplete="name"
               autoFocus
-
+              onChange={onchangename}
             />
             <TextField sx={{ input: { color: 'black' ,bgcolor: 'white'} }}
               margin="normal"
@@ -87,7 +133,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-
+              onChange={onchangeemail}
             />
             <TextField sx={{ input: { color: 'black' ,bgcolor: 'white'} }}
               margin="normal"
@@ -98,6 +144,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={onchangepassword}
             />
 
             <Button
@@ -113,11 +160,26 @@ export default function SignIn() {
               <Grid item>
                 <Link href="/login" variant="body2">   
                   <Typography  align="center" color="#28a745">{"Already have an account? Sign In"}</Typography>
-                </Link>
-              </Grid>
+                </Link> 
+            </Grid>
+
+             <br/>
+
+              {message && (
+            <div className="form-group">
+              <div
+                className={ successful ? "alert alert-success": "alert alert-danger" }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
+
             </Grid>
           </Box>
         </Box>
+
   
       </Container>
     </ThemeProvider>
