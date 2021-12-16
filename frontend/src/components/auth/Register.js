@@ -25,15 +25,7 @@ const themeDark = createTheme({
       primary: "#ffffff"
     }
   },
-  typography: {
-    fontFamily: [
-      'Nunito',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif'
-    ].join(','),
-  }
+  typography: {fontFamily:"Bakbak One"}
 });
 
 export default function SignUp() {

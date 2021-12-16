@@ -25,13 +25,7 @@ const themeDark = createTheme({
     }
   },
   typography: {
-    fontFamily: [
-      'Nunito',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif'
-    ].join(','),
+    fontFamily:"Bakbak One"
   }
 });
 

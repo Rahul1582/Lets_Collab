@@ -63,6 +63,7 @@
 
 import React, { useState ,useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 import "./nav.css";
 
 
@@ -103,6 +104,9 @@ export default function Header() {
     <div className="collapse navbar-collapse" id="navbarSupported">
     
     <ul className="navbar-nav mr-auto">
+
+    <Typography  align="left" color="#4462ff" fontSize='35px' fontFamily={'Bakbak One'} paddingLeft={2}>MERN CHAT APPLICATION</Typography>
+
       <li className="navbar-item font active">
       <Link to="/" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Home</Link>
       </li>   
@@ -113,11 +117,11 @@ export default function Header() {
       </li>  
 
       <li className="navbar-item font">
-      <Link to="/details" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Login</Link>
+      <Link to="/login" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Login</Link>
       </li> 
 
       <li className="navbar-item font">
-      <Link to="/sign-up" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Register</Link>
+      <Link to="/register" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Register</Link>
       </li>     
 
 
@@ -163,19 +167,16 @@ else{
     </li>  
 
     <li className="navbar-item font">
-    <Link to="/sign-up" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Register</Link>
+    <Link to="/register" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Register</Link>
     </li>     
 
           <li className="navbar-item font">
-    <Link to="/sign-in" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Login</Link>
+    <Link to="/login" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Login</Link>
     </li>
 
-    
     </ul>
     </div>
   </nav> 
-
-
 
   );
 

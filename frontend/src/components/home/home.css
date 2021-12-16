@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Shalimar&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Shalimar&display=swap');
 
 
 
@@ -33,18 +33,28 @@
   justify-content: center;
 }
 
-
-.main-div .btn1{
+.btn1{
   font-size: 2.5rem;
   padding-left: 6%;
-}
-
-.btn1{
   margin-left: 4%;
   width: 15rem;
   margin-right: -3%;
   font-family: 'Bakbak One', cursive;
-  color: #ca3640;
 }
 
+ */
 
+ @import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Shalimar&display=swap');
+
+ .hero{
+  width: auto;
+  height: auto ;
+  font-family: 'Yeon Sung', cursive;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color:#282828;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    font-family: 'Bakbak One', cursive;
+  }
