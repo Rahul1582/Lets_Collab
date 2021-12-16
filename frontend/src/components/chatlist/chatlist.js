@@ -137,7 +137,16 @@ export default function Chatlist(props){
           </div>
         </div>
         <div className="chatlist__items">
-          {allchatlists.map((chat, index) => {
+
+          {allchatlists === undefined  ?
+
+              <div className="chatlist__heading1">
+                    <h2>No Rooms Created</h2>
+              </div>
+
+          :
+
+          (allchatlists.map((chat, index) => {
             return (
               <ChatListItems
                 key={index}
@@ -147,7 +156,9 @@ export default function Chatlist(props){
                 setselectedroomid={setselectedroomid}
               />
             );
-          })}
+          }))
+          
+          }
         </div>
       </div>
       

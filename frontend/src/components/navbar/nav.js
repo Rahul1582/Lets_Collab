@@ -154,9 +154,10 @@ else{
 
     <div className="collapse navbar-collapse" id="navbarSupported">
 
-    <img src="https://i.ibb.co/6XzzZb8/mylogo.png" width="100" height="100" class="d-inline-block align-center" alt="" loading="lazy"/>
-
     <ul className="navbar-nav mr-auto">
+
+    <Typography  align="left" color="#4462ff" fontSize='35px' fontFamily={'Bakbak One'} paddingLeft={2}>MERN CHAT APPLICATION</Typography>
+    
     <li className="navbar-item font active">
     <Link to="/" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Home</Link>
     </li>   
