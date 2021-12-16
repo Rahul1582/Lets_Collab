@@ -1,34 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Chatlistttems extends Component {
-  constructor(props) {
-    super(props);
-  }
-  selectChat = (e) => {
-    for (
-      let index = 0;
-      index < e.currentTarget.parentNode.children.length;
-      index++
-    ) {
+export default function Chatlistttems(props){
+ 
+  const selectChat = (e) => {
+    for (let index = 0;index < e.currentTarget.parentNode.children.length;index++) 
+      {
       e.currentTarget.parentNode.children[index].classList.remove("active");
-    }
-    e.currentTarget.classList.add("active");
+      }
+      e.currentTarget.classList.add("active");
   };
 
-  render() {
     return (
       <div
-        style={{ animationDelay: `0.${this.props.animationDelay}s` }}
-        onClick={this.selectChat}
+        style={{ animationDelay: `0.${props.animationDelay}s` }}
+        onClick={selectChat}
         className={`chatlist__item ${
-          this.props.active ? this.props.active : ""
+          props.active ? props.active : ""
         } `}
       >
 
         <div className="userMeta">
-          <p>{this.props.name}</p>
+          <p>{props.name}</p>
         </div>
       </div>
     );
   }
-}

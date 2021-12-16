@@ -7,6 +7,27 @@ const User = require("../models/user");
 const transporter = require("../config/nodemailer");
 
 // Get the full chat list
+
+router.get('/userid', verifytoken, (req,res)=>{
+
+    const userid = req.user.id;
+
+    User.findOne({_id: userid}, async (err,user)=>{
+
+        if(err){
+
+            return res.json({status:500 , message : "Internal Server Error"});
+        }
+
+        else{
+
+            return res.json({status:200 , message : "Successful", userid});
+
+        }
+    })
+
+})
+
 router.get('/chatlist',verifytoken, (req,res)=>{
 
     const userid = req.user.id;
@@ -23,7 +44,7 @@ router.get('/chatlist',verifytoken, (req,res)=>{
             const userdetails = await User.findOne({_id: userid}).populate({
 
                 path:'joinedrooms',
-                options:{ sort:{'updatedAt':-1}}
+                options:{ sort:{'timestamp':-1}}
             })
         
             const chatlists = userdetails.joinedrooms;
