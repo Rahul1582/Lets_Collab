@@ -1,19 +1,16 @@
 import React from "react";
 
 export default function Chatlistttems(props){
- 
-  const selectChat = (e) => {
-    for (let index = 0;index < e.currentTarget.parentNode.children.length;index++) 
-      {
-      e.currentTarget.parentNode.children[index].classList.remove("active");
-      }
-      e.currentTarget.classList.add("active");
-  };
+
+  const {setselectedroomid}= props.setselectedroomid;
+  const {id} = props.id;
 
     return (
       <div
         style={{ animationDelay: `0.${props.animationDelay}s` }}
-        onClick={selectChat}
+        onClick={() => 
+          {setselectedroomid(id);}
+        }
         className={`chatlist__item ${
           props.active ? props.active : ""
         } `}

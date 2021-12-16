@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import "./chatbody.css";
 import ChatList from "../chatlist/chatlist";
 import ChatContent from "../chatcontent/chatcontent";;
 
-export default function chatbody() {
+export default function Chatbody() {
+
+  const [selectedroomid,setselectedroomid] = useState('');
 
     return (
       <div className="main__chatbody">
-        <ChatList />
-        <ChatContent />
+        <ChatList setselectedroomid = {setselectedroomid}/>
+        <ChatContent selectedroomid = {selectedroomid}/>
       </div>
     );
   }

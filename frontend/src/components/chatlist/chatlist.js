@@ -14,7 +14,9 @@ const socket = io.connect("http://localhost:8000/", {
   transports: ['websocket'],
 });
 
-export default function Chatlist(){
+export default function Chatlist(props){
+
+  const {setselectedroomid} = props;
 
   const [open, setopen] = useState(false);
   const [userid, setuserid] = useState(false);
@@ -29,13 +31,13 @@ export default function Chatlist(){
     }
     }).then((res) => {
         setuserid(res.data.userid);
+        console.log(userid);
       })
       .catch((error) => {
         console.error(error)
       })
 
-  }, [allchatlists]);
-
+  }, [userid]);
 
 
   useEffect(() => {
@@ -46,13 +48,13 @@ export default function Chatlist(){
     }
     }).then((res) => {
         setallchatlists(res.data.chatlists);
-        console.log(res.data.chatlists);
+        console.log(allchatlists);
       })
       .catch((error) => {
         console.error(error)
       })
 
-  }, []);
+  },[]);
 
   useEffect(() => {
 
@@ -64,7 +66,11 @@ export default function Chatlist(){
       });
     });
 
-  }, []);
+    return () => {
+      socket.removeAllListeners(`create-room-${userid}`);
+    };
+
+  },[allchatlists]);
 
 
   const handleClickOpen = () => {
@@ -96,7 +102,7 @@ export default function Chatlist(){
         onClose={handleClose}
         aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id='form-dialog-title'>New Room</DialogTitle>
+        <DialogTitle id='form-dialog-title' fontFamily="Bakbak One">New Room</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -131,14 +137,14 @@ export default function Chatlist(){
           </div>
         </div>
         <div className="chatlist__items">
-          {allchatlists.map((item, index) => {
+          {allchatlists.map((chat, index) => {
             return (
               <ChatListItems
-                name={item.title}
-                key={item.id}
+                key={index}
+                name={chat.title}
+                id={chat._id}
                 animationDelay={index + 1}
-                active={item.active ? "active" : ""}
-                isOnline={item.isOnline ? "active" : ""}
+                setselectedroomid={setselectedroomid}
               />
             );
           })}

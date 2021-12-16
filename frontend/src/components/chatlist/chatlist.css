@@ -1,3 +1,7 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Shalimar&display=swap');
+
+  
 .main__chatlist {
     border-right: 1px solid #ebe7fb;
     padding: 10px 40px 10px 10px;
@@ -144,3 +148,5 @@
     color: #fff;
     transform: scale(1.02);
   } 
+
+
