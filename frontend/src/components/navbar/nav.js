@@ -105,7 +105,11 @@ export default function Header() {
     
     <ul className="navbar-nav mr-auto">
 
-    <Typography  align="left" color="#4462ff" fontSize='35px' fontFamily={'Bakbak One'} paddingLeft={2}>MERN CHAT APPLICATION</Typography>
+    {/* <Typography  align="left" color="#4462ff" fontSize='35px' fontFamily={'Bakbak One'} paddingLeft={2}>MERN CHAT APPLICATION</Typography> */}
+
+    <li className="heading">
+        MERN CHAT APPLICATION
+    </li> 
 
       <li className="navbar-item font active">
       <Link to="/" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Home</Link>
@@ -129,7 +133,7 @@ export default function Header() {
       <Link to="/" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" 
       onClick={() => {
 
-      localStorage.setItem('loggedin',false);
+      window.localStorage.removeItem('loggedin');
       window.localStorage.removeItem("usertoken");
       window.location = "/";
       }}> Logout</Link>

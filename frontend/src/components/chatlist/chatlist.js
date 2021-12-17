@@ -23,6 +23,8 @@ export default function Chatlist(props){
   const [roomtitle, setroomtitle] = useState('');
   const [allchatlists, setallchatlists] = useState([]);
 
+  // useEffect(() => {}, [selectedroomid]);
+
   useEffect(() => {
        
     axios.get('http://localhost:8000/chats/userid', {        
@@ -31,7 +33,7 @@ export default function Chatlist(props){
     }
     }).then((res) => {
         setuserid(res.data.userid);
-        console.log(userid);
+        // console.log(userid);
       })
       .catch((error) => {
         console.error(error)
@@ -82,12 +84,14 @@ export default function Chatlist(props){
     };
 
   const handleChange = (e) => {
+    e.preventDefault();
     setroomtitle(e.target.value);
   };
 
   const handleSubmit = () => {
     // emit create room action to backend with reqd data
     socket.emit('create-room', { userid: userid, roomtitle: roomtitle });
+    setroomtitle('');
     setopen(false);
   };
 

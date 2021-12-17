@@ -24,3 +24,10 @@
     align-items: center;
     text-align: center;
 }
+
+.heading{
+    color: white;
+    font-size: 35px;
+    justify-content: center;
+    padding-left: 10px;
+}

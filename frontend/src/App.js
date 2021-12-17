@@ -10,34 +10,33 @@ import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/dashboard";
 
 
-const loggedin = localStorage.getItem("loggedin");
+const PrivateRoute = (privateRouteProps) => {
+  const { isAuthenticated, component: Component, path } = privateRouteProps;
 
-// if()
-// {
-//    loggedin = true;
-// }
-
-// else
-// {
-//    loggedin=false;
-// }
-
-const PrivateRoute = ({loggedin,component: Component, ...rest}) => {
-  console.log(loggedin);
   return (
-
-    
-      // Show the component only when the user is logged in
-      // Otherwise, redirect the user to /signin page
-      <Route {...rest} render={props => (
-          loggedin ?
-              <Component {...props} />
-          : <Redirect to="/register" />
-      )} />
+    <Route
+      path={path}
+      render={(props) => {
+        return isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        );
+      }}
+    />
   );
 };
 
 function App() {
+
+  const loggedin = localStorage.getItem("loggedin");
 
   return (
     
@@ -46,7 +45,11 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <PrivateRoute path='/dashboard' component={Dashboard} loggedin={loggedin}/>
+      <PrivateRoute
+            path='/dashboard'
+            component={Dashboard}
+            isAuthenticated={loggedin}
+        />
     </Switch>
 
   </Router>
