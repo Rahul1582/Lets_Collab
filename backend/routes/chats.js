@@ -44,7 +44,7 @@ router.get('/chatlist',verifytoken, (req,res)=>{
             const userdetails = await User.findOne({_id: userid}).populate({
 
                 path:'joinedrooms',
-                options:{ sort:{'timestamp':-1}}
+                options:{ sort:{'createdAt':-1}}
             })
         
             const chatlists = userdetails.joinedrooms;

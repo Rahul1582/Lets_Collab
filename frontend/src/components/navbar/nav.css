@@ -4,6 +4,12 @@
     
 }
 
+.navbar{
+    background-color:#282828;
+    font-family: 'Bakbak One', cursive;
+    color: #4664ff;
+}
+
 .navbar-dark .navbar-nav .nav-link {
     background-color:#282828;
     font-family: 'Bakbak One', cursive;
@@ -12,9 +18,8 @@
     text-align: center;
     justify-content: center;
     display: flex;
-    color: white;
+    color: #4664ff;
     margin-left: 50px;
-    padding-left: 10px;
 
 }
 
@@ -26,8 +31,8 @@
 }
 
 .heading{
-    color: white;
+    color: #4664ff;
     font-size: 35px;
     justify-content: center;
-    padding-left: 10px;
+    padding-left: 15px;
 }

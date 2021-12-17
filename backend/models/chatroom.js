@@ -55,14 +55,5 @@ const chatroom = new Schema({
     }
 );
 
-chatroom.pre('update',function(next) {
-    this.model('User').update(
-        { },
-        { "$pull": { "joinedrooms": this._id } },
-        { "multi": true },
-        next
-    );
-})
-
 
 module.exports = mongoose.model('Chatroom',chatroom);

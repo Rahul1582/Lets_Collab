@@ -37,7 +37,7 @@
     color: white;
   }
   .content__body {
-    max-height: calc(100vh - calc(100vh / 2));
+    max-height: calc(100vh - calc(100vh / 2.8));
     overflow-y:auto;
   }
   .chat__item {
@@ -115,9 +115,6 @@
   }
   .chat__item.other .chat__item__content .chat__meta span {
     color: #000;
-  }
-  .content__footer {
-    padding-top: 90px;
   }
   .sendNewMessage {
     background-color: #fff;

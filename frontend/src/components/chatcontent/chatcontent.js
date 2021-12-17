@@ -1,10 +1,12 @@
-import React, { Component,createRef } from "react";
+import React, { createRef } from "react";
 import "./chatcontent.css";
 import ChatItem from "./chatitem";
 
-export default class chatcontent extends Component {
-  messagesEndRef = createRef(null);
-  chatItms = [
+export default function Chatcontent(props) {
+
+
+  // messagesEndRef = createRef(null);
+  const chat = [
     {
       key: 1,
       image:
@@ -56,42 +58,42 @@ export default class chatcontent extends Component {
     },
   ];
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      chat: this.chatItms,
-      msg: "",
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     chat: this.chatItms,
+  //     msg: "",
+  //   };
+  // }
 
-  scrollToBottom = () => {
-    this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // scrollToBottom = () => {
+  //   this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  componentDidMount() {
-    window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 13) {
-        if (this.state.msg != "") {
-          this.chatItms.push({
-            key: 1,
-            type: "",
-            msg: this.state.msg,
-            image:
-              "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-          });
-          this.setState({ chat: [...this.chatItms] });
-          this.scrollToBottom();
-          this.setState({ msg: "" });
-        }
-      }
-    });
-    this.scrollToBottom();
-  }
-  onStateChange = (e) => {
+  // componentDidMount() {
+  //   window.addEventListener("keydown", (e) => {
+  //     if (e.keyCode == 13) {
+  //       if (this.state.msg != "") {
+  //         this.chatItms.push({
+  //           key: 1,
+  //           type: "",
+  //           msg: this.state.msg,
+  //           image:
+  //             "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+  //         });
+  //         this.setState({ chat: [...this.chatItms] });
+  //         this.scrollToBottom();
+  //         this.setState({ msg: "" });
+  //       }
+  //     }
+  //   });
+  //   this.scrollToBottom();
+  // }
+
+  const onStateChange = (e) => {
     this.setState({ msg: e.target.value });
   };
 
-  render() {
     return (
       <div className="main__chatcontent">
         <div className="content__header">
@@ -111,7 +113,7 @@ export default class chatcontent extends Component {
         </div>
         <div className="content__body">
           <div className="chat__items">
-            {this.state.chat.map((itm, index) => {
+            {chat.map((itm, index) => {
               return (
                 <ChatItem
                   animationDelay={index + 2}
@@ -122,7 +124,7 @@ export default class chatcontent extends Component {
                 />
               );
             })}
-            <div ref={this.messagesEndRef} />
+            {/* <div ref={messagesEndRef} /> */}
           </div>
         </div>
         <div className="content__footer">
@@ -133,8 +135,8 @@ export default class chatcontent extends Component {
             <input
               type="text"
               placeholder="Type a message here"
-              onChange={this.onStateChange}
-              value={this.state.msg}
+              onChange={onStateChange}
+              
             />
             <button className="btnSendMsg" id="sendMsgBtn">
               <i className="fa fa-paper-plane"></i>
@@ -144,4 +146,3 @@ export default class chatcontent extends Component {
       </div>
     );
   }
-}

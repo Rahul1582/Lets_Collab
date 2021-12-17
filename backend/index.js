@@ -17,6 +17,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const server = http.createServer(app);
 
+// User.pre('update',function(next) {
+//     this.model('Chatroom').update(
+//         { },
+//         { "$pull": { "joinedusers": this._id } },
+//         { "multi": true },
+//         next
+//     );
+// })
+
+// Chatroom.pre('update',function(next) {
+//     this.model('User').update(
+//         { },
+//         { "$pull": { "joinedrooms": this._id } },
+//         { "multi": true },
+//         next
+//     );
+// })
+
+
+
 // create a socket
 const io = require('socket.io')(server, {
   cors: {
@@ -69,8 +89,14 @@ io.on('connection',(socket)=>{
 
                         await User.updateOne(
                             {_id:userid},
-                            { $push: { joinedrooms: roomid } }
+                            { $push: { joinedrooms: roomid }}
                         )
+
+                       await User.findOne({_id: userid}).populate({
+
+                            path:'joinedrooms',
+                            options:{ sort:{'createdAt':-1}}
+                        })
 
                         io.emit(`create-room-${userid}`, { room: result});
                     }catch(err){

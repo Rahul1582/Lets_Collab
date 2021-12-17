@@ -64,7 +64,7 @@ export default function Chatlist(props){
     socket.removeAllListeners(`create-room-${userid}`);
     socket.on(`create-room-${userid}`, function (data) {
       setallchatlists((prevState) => {
-        return [...prevState, data.room];
+        return [ data.room,...prevState];
       });
     });
 
@@ -91,7 +91,7 @@ export default function Chatlist(props){
   const handleSubmit = () => {
     // emit create room action to backend with reqd data
     socket.emit('create-room', { userid: userid, roomtitle: roomtitle });
-    setroomtitle('');
+    setroomtitle("");
     setopen(false);
   };
 

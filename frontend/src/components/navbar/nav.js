@@ -108,8 +108,7 @@ export default function Header() {
     {/* <Typography  align="left" color="#4462ff" fontSize='35px' fontFamily={'Bakbak One'} paddingLeft={2}>MERN CHAT APPLICATION</Typography> */}
 
     <li className="heading">
-        MERN CHAT APPLICATION
-    </li> 
+        MERN CHAT APPLICATION</li> 
 
       <li className="navbar-item font active">
       <Link to="/" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Home</Link>

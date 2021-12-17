@@ -27,14 +27,4 @@ const user = new Schema({
     ]
 });
 
-
-user.pre('update',function(next) {
-    this.model('Chatroom').update(
-        { },
-        { "$pull": { "joinedusers": this._id } },
-        { "multi": true },
-        next
-    );
-})
-
 module.exports = mongoose.model('User',user);
