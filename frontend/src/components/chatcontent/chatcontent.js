@@ -1,9 +1,30 @@
-import React, { createRef } from "react";
+import React, {useState ,useEffect} from "react";
+import axios from "axios";
 import "./chatcontent.css";
 import ChatItem from "./chatitem";
 
 export default function Chatcontent(props) {
 
+
+  const {roomid} = props;
+
+  const [roomname,setroomname]  =useState('');
+  const [roommembers,setroommembers]  =useState([]);
+
+  useEffect(() => {
+       
+    axios.get(`http://localhost:8000/chats/chatroom/${roomid}`, {        
+    headers: {
+      "x-access-token": localStorage.getItem("usertoken")
+    }
+    }).then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+  },[]);
 
   // messagesEndRef = createRef(null);
   const chat = [

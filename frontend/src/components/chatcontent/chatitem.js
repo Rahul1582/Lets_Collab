@@ -1,7 +1,6 @@
 import React from "react";
-import Avatar from "../chatlist/avatar";
 
-export default function chatitem(props) {
+export default function Chatitem(props) {
 
     return (
       <div
