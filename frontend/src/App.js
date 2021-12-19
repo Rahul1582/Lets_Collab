@@ -8,6 +8,7 @@ import Home from "./components/home/home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/dashboard";
+import JoinRoom from "./components/joinroom/joinroom";
 
 
 const PrivateRoute = (privateRouteProps) => {
@@ -48,6 +49,11 @@ function App() {
       <PrivateRoute
             path='/dashboard'
             component={Dashboard}
+            isAuthenticated={loggedin}
+        />
+        <PrivateRoute
+            path='/joinroom'
+            component={JoinRoom}
             isAuthenticated={loggedin}
         />
     </Switch>

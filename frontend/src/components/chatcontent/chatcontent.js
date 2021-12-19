@@ -9,9 +9,6 @@ import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
-import { blue } from '@mui/material/colors';
 import "./chatcontent.css";
 import ChatItem from "./chatitem";
 
@@ -20,8 +17,6 @@ export default function Chatcontent(props) {
   const roomid = props.selectedroomid;
 
   const [open, setopen] = useState(false);
-  const [onclose, setonclose] = useState(false);
-
   const [roomname,setroomname]  =useState('');
   const [roommembers,setroommembers]  =useState([]);
 
@@ -149,23 +144,23 @@ export default function Chatcontent(props) {
           <div className="blocks">
             <div className="settings">
               <button className="btn-nobg" onClick={handleClickOpen}>
-                <span>Room Participants</span>
+                <span fontFamily="Bakbak One">Room Participants</span>
               </button>
                     <Dialog
                     open={open}
         onClose={() => setopen(false)}
         aria-labelledby='simple-dialog-title'
       >
-        <DialogTitle id='simple-dialog-title'>Participants List</DialogTitle>
+        <DialogTitle id='simple-dialog-title' fontFamily="Bakbak One">Participants List</DialogTitle>
         <List>
           {roommembers.map((p) => (
-            <ListItem button>
-              <ListItemAvatar>
+            <ListItem fontFamily="Bakbak One">
+              <ListItemAvatar fontFamily="Bakbak One" >
                 <Avatar>
-                  <PersonIcon />
+                  <PersonIcon fontFamily="Bakbak One"/>
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={p} />
+              <ListItemText fontFamily="Bakbak One" primary={p} />
             </ListItem>
           ))}
         </List>
