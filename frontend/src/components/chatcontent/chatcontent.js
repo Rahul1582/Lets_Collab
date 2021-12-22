@@ -1,6 +1,6 @@
 import React, {useState ,useEffect} from "react";
 import axios from "axios";
-import Button from '@mui/material/Button';
+import copy from "copy-to-clipboard";  
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -19,7 +19,7 @@ export default function Chatcontent(props) {
   const [open, setopen] = useState(false);
   const [roomname,setroomname]  =useState('');
   const [roommembers,setroommembers]  =useState([]);
-
+  const [textroomid, settextroomid] = useState('');
 
   useEffect(() => {
        
@@ -32,6 +32,7 @@ export default function Chatcontent(props) {
         // console.log(res.data);
         setroomname(res.data.chatroom.title);
         setroommembers(res.data.usernames);
+        settextroomid(res.data.chatroom._id);
       })
       .catch((error) => {
         console.error(error)
@@ -132,6 +133,12 @@ export default function Chatcontent(props) {
     setopen(true);
     };
 
+    
+    const handlecopytext = () => {
+      copy(textroomid);
+      alert(`Copied the Room ID Sucessfully!! Share with your friends`);
+    };
+
     return (
       <div className="main__chatcontent">
         <div className="content__header">
@@ -143,9 +150,19 @@ export default function Chatcontent(props) {
 
           <div className="blocks">
             <div className="settings">
-              <button className="btn-nobg" onClick={handleClickOpen}>
+
+            <button className="btn-nobg" onClick={handlecopytext}>
+                <span fontFamily="Bakbak One">Copy Room ID</span>
+            </button>
+
+            <button className="btn-nobg" onClick={handleClickOpen}>
                 <span fontFamily="Bakbak One">Room Participants</span>
-              </button>
+            </button>
+
+            <button className="btn-nobg">
+                <span fontFamily="Bakbak One">Leave Room</span>
+            </button>
+
                     <Dialog
                     open={open}
         onClose={() => setopen(false)}
@@ -165,9 +182,9 @@ export default function Chatcontent(props) {
           ))}
         </List>
       </Dialog>
-              <button className="btn-nobg">
+              {/* <button className="btn-nobg">
                 <i className="fa fa-cog"></i>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

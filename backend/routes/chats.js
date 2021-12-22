@@ -62,7 +62,6 @@ router.get('/chatroom/:roomid', verifytoken, (req,res)=>{
 
     const roomid = req.params.roomid;
     
-    
     Chatroom.findById(roomid, async (err,chatroom)=>{
 
         
@@ -160,6 +159,8 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
     const chatroomid = req.params.chatroomid;
 
     const userid = req.user.id;
+
+    console.log(chatroomid);
 
     Chatroom.findById({_id:chatroomid},(err, chatroom) =>{
 

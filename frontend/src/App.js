@@ -2,8 +2,6 @@ import React from "react";
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "./components/navbar/nav";
-import ChatBody from "./components/chatbody/chatbody";
 import Home from "./components/home/home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";

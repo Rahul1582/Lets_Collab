@@ -29,12 +29,12 @@ const themeDark = createTheme({
 
 export default function JoinRoom() {
 
-  const [roomid, setroomid] = useState("");
+  const [chatroomid, setchatroomid] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
   const onchangeroomid = (e) => {
-    setroomid(e.target.value);
+    setchatroomid(e.target.value);
   };
 
 
@@ -45,8 +45,10 @@ export default function JoinRoom() {
     setMessage("");
     setSuccessful(false);
 
-    axios.post(`http://localhost:8000/chats/invitelink/${roomid}`,
-        {        
+    axios.post("http://localhost:8000/chats/invitelink/"+ chatroomid,{ params: {
+      chatroomid
+     }},
+    {        
     headers: {
       "x-access-token": localStorage.getItem("usertoken")
     }
@@ -54,9 +56,8 @@ export default function JoinRoom() {
            
             const newmessage = res.data.message;
             setMessage(newmessage);
-            const valid = res.data.isValid;
 
-            if(valid && res.data.status===200){
+            if(res.data.status===200){
               
               setSuccessful(true);
               window.location='/dashboard';

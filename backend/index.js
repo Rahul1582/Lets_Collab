@@ -6,7 +6,6 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const auth = require("./routes/auth");
 const chats = require("./routes/chats");
-const files = require("./routes/files");
 const User = require("./models/user");
 const Chatroom = require("./models/chatroom");
 
@@ -50,7 +49,6 @@ connectdb();
 // routes
 app.use("/auth",auth);
 app.use("/chats",chats);
-app.use("/files",files);
 
 io.on('connection',(socket)=>{
 

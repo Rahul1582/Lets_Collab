@@ -50,12 +50,12 @@ export default function Chatlist(props){
     }
     }).then((res) => {
         setallchatlists(res.data.chatlists);
-        console.log(allchatlists);
+        console.log(allchatlists.length);
       })
       .catch((error) => {
         console.error(error)
       })
-
+// eslint-disable-next-line
   },[]);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Chatlist(props){
     return () => {
       socket.removeAllListeners(`create-room-${userid}`);
     };
-
+// eslint-disable-next-line
   },[allchatlists]);
 
 
@@ -101,6 +101,7 @@ export default function Chatlist(props){
           <i className="fa fa-plus"></i>
           <span>New conversation</span>
         </button>
+
         <Dialog
         open={open}
         onClose={handleClose}
@@ -142,10 +143,10 @@ export default function Chatlist(props){
         </div>
         <div className="chatlist__items">
 
-          {allchatlists === undefined  ?
+          {allchatlists.length === 0  ?
 
               <div className="chatlist__heading1">
-                    <h2>No Rooms Created</h2>
+                    <h2>No Rooms Created Or Joined</h2>
               </div>
 
           :
