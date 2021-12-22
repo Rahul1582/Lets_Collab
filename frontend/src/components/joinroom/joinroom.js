@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Nav from "../navbar/nav";
 
 
 const themeDark = createTheme({
@@ -73,7 +74,9 @@ export default function JoinRoom() {
 
 
   return (
+   
     <ThemeProvider theme={themeDark}>
+       <Nav/>
       <Container component="main" maxWidth="s">
         <CssBaseline />
         <Box

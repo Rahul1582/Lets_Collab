@@ -13,6 +13,15 @@
     border-right: 1px solid #ebe7fb;
     background-color: #282828;
   }
+
+  .main__chatcontent1 {
+    flex-grow: 1;
+    padding: 10px 40px;
+    max-width: 100%;
+    border-right: 1px solid #ebe7fb;
+    background-color: #282828;
+    color: white;
+  }
   .content__header {
     padding-bottom: 15px;
     border-bottom: 1px solid #ebe7fb;

@@ -116,7 +116,7 @@ export default function Header() {
 
       
       <li className="navbar-item font">
-      <Link to="/details" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Details</Link>
+      <Link to="/dashboard" className="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Dashboard</Link>
       </li> 
 
       <li className="navbar-item font">

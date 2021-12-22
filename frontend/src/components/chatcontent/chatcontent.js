@@ -16,6 +16,8 @@ export default function Chatcontent(props) {
 
   const roomid = props.selectedroomid;
 
+  console.log(!roomid);
+
   const [open, setopen] = useState(false);
   const [roomname,setroomname]  =useState('');
   const [roommembers,setroommembers]  =useState([]);
@@ -139,8 +141,23 @@ export default function Chatcontent(props) {
       alert(`Copied the Room ID Sucessfully!! Share with your friends`);
     };
 
-    return (
-      <div className="main__chatcontent">
+    
+
+    if(!roomid){
+
+        return (
+        <div className="main__chatcontent1">
+        <h2 color="white">Create a new room / Select an existing room to see the chats</h2>
+        </div>
+        );
+      }
+      
+
+  else{
+
+        return(
+
+        <div className="main__chatcontent">
         <div className="content__header">
           <div className="blocks">
             <div className="current-chatting-user">
@@ -221,5 +238,9 @@ export default function Chatcontent(props) {
           </div>
         </div>
       </div>
-    );
+
+        );
+
+      }
+      
   }

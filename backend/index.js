@@ -106,6 +106,16 @@ io.on('connection',(socket)=>{
                 res.status(401).send('Socket callback error');
              } 
         });
+
+        // socket.on('leave-room',async function(room){
+
+        //     const{userid,selectedroomid} = data;
+
+        //     ChatRoom.findOneAndUpdate({
+
+        //         {_id:userid}
+        //     })
+        // })
     }catch (err) {
         console.log('Error socket', err.message);
       }
