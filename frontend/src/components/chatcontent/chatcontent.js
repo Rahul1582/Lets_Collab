@@ -194,6 +194,7 @@ export default function Chatcontent(props) {
 
     };
 
+    
     const leaveroom = () => {
       socket.emit('leave-room', { userid: userid, roomid: roomid });
       alert(`Room Left`);
