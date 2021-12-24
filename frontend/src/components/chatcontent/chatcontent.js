@@ -71,6 +71,7 @@ export default function Chatcontent(props) {
   }, [roomid]);
 
   useEffect(() => {
+    console.log('h');
     scrollToBottom();
   }, [msgarray]);
 
