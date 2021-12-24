@@ -32,7 +32,7 @@ export default function Chatitem(props) {
       >
 
         <div className="chat__item__content">  
-         <div className="chat__msg-name"> Sent By - {userid === id ? "You" : name}</div>   
+         <div className="chat__msg-name">{userid === id ? "You" : name}</div>   
         <div className="chat__msg">{props.msg}</div>
         <div className="chat__msg-time">{time}</div>
         </div>

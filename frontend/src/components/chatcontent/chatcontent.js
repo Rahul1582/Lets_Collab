@@ -105,59 +105,6 @@ export default function Chatcontent(props) {
 
   },[username]);
 
-  // messagesEndRef = createRef(null);
-  const chat = [
-    {
-      key: 1,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "Hi Tim, How are you?",
-    },
-    {
-      key: 2,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "I am fine.",
-    },
-    {
-      key: 3,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "What about you?",
-    },
-    {
-      key: 4,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "Awesome these days.",
-    },
-    {
-      key: 5,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "Finally. What's the plan?",
-    },
-    {
-      key: 6,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "what plan mate?",
-    },
-    {
-      key: 7,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "I'm taliking about the tutorial",
-    },
-  ];
-
   const onStateChange = (e) => {
     e.preventDefault();
     setmsg(e.target.value);
@@ -166,6 +113,12 @@ export default function Chatcontent(props) {
     const handleClickOpen = () => {
     setopen(true);
     };
+
+    const formatteddate = (date) => {
+      return new Date(Date.parse(date)).toLocaleDateString("en-US", {
+         dateStyle: "long"
+      });
+   };
 
     
     const handlecopytext = () => {
@@ -183,14 +136,16 @@ export default function Chatcontent(props) {
       if(msg.trim() !== '' ){
         socket.emit('sendmessage', {
           userid:userid,
-          time: currentdate + time,
+          time: formatteddate(currentdate) + " " + time,
           message: msg,
           username:username,
           roomid:roomid
         });
+
+        scrollToBottom();
       }
 
-      setmsg('');
+      console.log(msg);
 
     };
 
@@ -278,19 +233,6 @@ export default function Chatcontent(props) {
                 />
               );
             })}
-{/* 
-          {chat.map((itm, index) => {
-              return (
-                <ChatItem
-                  animationDelay={index + 2}
-                  key={itm.key}
-                  user={itm.type ? itm.type : ""}
-                  msg={itm.msg}
-                  image={itm.image}
-                />
-              );
-            })} */}
-            {/* <div ref={messagesEndRef} /> */}
           </div>
         </div>
         <div className="content__footer">
