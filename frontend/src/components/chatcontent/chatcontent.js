@@ -1,4 +1,4 @@
-import React, {useState ,useEffect} from "react";
+import React, {useState ,useEffect, useRef} from "react";
 import axios from "axios";
 import copy from "copy-to-clipboard";  
 import Avatar from '@mui/material/Avatar';
@@ -11,17 +11,30 @@ import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
 import "./chatcontent.css";
 import ChatItem from "./chatitem";
+import { io } from 'socket.io-client';
+
+const socket = io.connect("http://localhost:8000/", {
+  transports: ['websocket'],
+});
 
 export default function Chatcontent(props) {
 
   const roomid = props.selectedroomid;
 
-  console.log(!roomid);
-
   const [open, setopen] = useState(false);
+  const messagesendref = useRef(null);
   const [roomname,setroomname]  =useState('');
+  const [userid, setuserid] = useState('');
+  const [username, setusername] = useState('');
   const [roommembers,setroommembers]  =useState([]);
   const [textroomid, settextroomid] = useState('');
+  const [msg, setmsg] = useState('');
+  const [msgarray, setmsgarray] = useState([]);
+
+  const scrollToBottom = () => {
+    messagesendref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+  
 
   useEffect(() => {
        
@@ -35,12 +48,62 @@ export default function Chatcontent(props) {
         setroomname(res.data.chatroom.title);
         setroommembers(res.data.usernames);
         settextroomid(res.data.chatroom._id);
+        setmsgarray(res.data.chatroom.msgarray);
       })
       .catch((error) => {
         console.error(error)
       })
 
   },[roomid]);
+
+  useEffect(() => {
+    // listener for latest message on selected room
+    socket.removeAllListeners(`${roomid}`);
+    socket.on(`${roomid}`, function (data) {
+      setmsgarray((prevState) => {
+        return [...prevState, data.finalmessage];
+      });
+    });
+
+    return (()=>{
+    socket.removeAllListeners(`${roomid}`);
+    })
+  }, [roomid]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [msgarray]);
+
+  useEffect(() => {
+       
+    axios.get('http://localhost:8000/chats/userid', {        
+    headers: {
+      "x-access-token": localStorage.getItem("usertoken")
+    }
+    }).then((res) => {
+        setuserid(res.data.userid);
+        // console.log(userid);
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+  }, [userid]);
+
+  useEffect(() => {
+       
+    axios.get('http://localhost:8000/chats/username', {        
+    headers: {
+      "x-access-token": localStorage.getItem("usertoken")
+    }
+    }).then((res) => {
+       setusername(res.data.user.name);
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+  },[username]);
 
   // messagesEndRef = createRef(null);
   const chat = [
@@ -95,40 +158,9 @@ export default function Chatcontent(props) {
     },
   ];
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     chat: this.chatItms,
-  //     msg: "",
-  //   };
-  // }
-
-  // scrollToBottom = () => {
-  //   this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // componentDidMount() {
-  //   window.addEventListener("keydown", (e) => {
-  //     if (e.keyCode == 13) {
-  //       if (this.state.msg != "") {
-  //         this.chatItms.push({
-  //           key: 1,
-  //           type: "",
-  //           msg: this.state.msg,
-  //           image:
-  //             "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-  //         });
-  //         this.setState({ chat: [...this.chatItms] });
-  //         this.scrollToBottom();
-  //         this.setState({ msg: "" });
-  //       }
-  //     }
-  //   });
-  //   this.scrollToBottom();
-  // }
-
   const onStateChange = (e) => {
-    this.setState({ msg: e.target.value });
+    e.preventDefault();
+    setmsg(e.target.value);
   };
 
     const handleClickOpen = () => {
@@ -139,9 +171,35 @@ export default function Chatcontent(props) {
     const handlecopytext = () => {
       copy(textroomid);
       alert(`Copied the Room ID Sucessfully!! Share with your friends`);
+     
     };
 
-    
+    const handleSubmit = (e, roomid, username, userid) =>{
+
+      e.preventDefault();
+      var currentdate = new Date();
+      var time = currentdate.getHours() + ':' + currentdate.getMinutes();
+
+      if(msg.trim() !== '' ){
+        socket.emit('sendmessage', {
+          userid:userid,
+          time: currentdate + time,
+          message: msg,
+          username:username,
+          roomid:roomid
+        });
+      }
+
+      setmsg('');
+
+    };
+
+    const leaveroom = () => {
+      socket.emit('leave-room', { userid: userid, roomid: roomid });
+      alert(`Room Left`);
+      window.location.reload();
+    };
+
 
     if(!roomid){
 
@@ -176,7 +234,7 @@ export default function Chatcontent(props) {
                 <span fontFamily="Bakbak One">Room Participants</span>
             </button>
 
-            <button className="btn-nobg">
+            <button className="btn-nobg" onClick={() => {if(window.confirm('Are you sure you want to Leave this Room?'))leaveroom()}}>
                 <span fontFamily="Bakbak One">Leave Room</span>
             </button>
 
@@ -207,17 +265,30 @@ export default function Chatcontent(props) {
         </div>
         <div className="content__body">
           <div className="chat__items">
-            {chat.map((itm, index) => {
+            {msgarray.map((itm, index) => {
               return (
                 <ChatItem
                   animationDelay={index + 2}
                   key={itm.key}
-                  user={itm.type ? itm.type : "me"}
+                  userid = {itm.userid}
+                  msg={itm.message}
+                  name = {itm.username}
+                  time = {itm.time}
+                />
+              );
+            })}
+{/* 
+          {chat.map((itm, index) => {
+              return (
+                <ChatItem
+                  animationDelay={index + 2}
+                  key={itm.key}
+                  user={itm.type ? itm.type : ""}
                   msg={itm.msg}
                   image={itm.image}
                 />
               );
-            })}
+            })} */}
             {/* <div ref={messagesEndRef} /> */}
           </div>
         </div>
@@ -230,9 +301,10 @@ export default function Chatcontent(props) {
               type="text"
               placeholder="Type a message here"
               onChange={onStateChange}
-              
             />
-            <button className="btnSendMsg" id="sendMsgBtn">
+            <button className="btnSendMsg" id="sendMsgBtn" type="submit" onClick={(e) =>
+              handleSubmit(e, roomid, username, userid)
+            }>
               <i className="fa fa-paper-plane"></i>
             </button>
           </div>

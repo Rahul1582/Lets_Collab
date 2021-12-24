@@ -100,15 +100,53 @@ io.on('connection',(socket)=>{
                         console.log('Chat room save error:', err);
                     }
                 });
+            }catch(err){
+                    res.status(401).send('Socket callback error');
+                 }
+            }); 
+
+        socket.on('sendmessage' , async function(data){
+
+            const userid = data.userid;
+            const roomid = data.roomid;
+            const username = data.username;
+            const time = data.time;
+            const message = data.message
+
+            const finalmessage = {
+                userid,
+                username,
+                message: message,
+                time: time,
+              };
+
+            console.log(finalmessage);
+
+            Chatroom.findOneAndUpdate(
+                { _id: roomid },
+                { $push: { msgarray: finalmessage } },
+                (err, doc) => {
+                  if (err) {
+                    console.log('error in sending msg: ', err);
+                  }
+        
+                  // emit latest message
+                  io.emit(`${roomid}`, { finalmessage});
+                  io.emit(`${roomid}-lastMessage`, { finalmessage });
+                }
+              );
 
 
-        socket.on('leave-room',async function(data  ){
+        });
 
-            const {userid, selectedroomid} = data;
+        socket.on('leave-room', async function(room){
+
+            const roomid = room.roomid;
+            const userid = room.userid;
 
             Chatroom.findOneAndUpdate(  
 
-                {_id:selectedroomid},
+                {_id:roomid},
                 {$pull:{joinedusers:userid}},
                 {new:true},
 
@@ -122,7 +160,7 @@ io.on('connection',(socket)=>{
                     User.findOneAndUpdate(
 
                         {_id:userid},
-                        {$pull:{joinedrooms:selectedroomid}},
+                        {$pull:{joinedrooms:roomid}},
                         (err) =>{
 
                             if(err){
@@ -135,31 +173,17 @@ io.on('connection',(socket)=>{
                  io.emit(`leave-room-${userid}`, { room: result });
 
                  if (result.joinedusers.length == 0) {
-                    Chatroom.findOneAndDelete({ _id: selectedroomid }, (err) => {
+                    Chatroom.findOneAndDelete({ _id: roomid }, (err) => {
                       if (err) {
-                        console.log('error in deleting room: ', err);
+                        console.log('Error in deleting room: ', err);
                       }
                     });
+                }
 
                 }
-            }
-        );
-        })
-        
-             } catch(err){
-                res.status(401).send('Socket callback error');
-             } 
+            );
         });
 
-        // socket.on('leave-room',async function(room){
-
-        //     const{userid,selectedroomid} = data;
-
-        //     ChatRoom.findOneAndUpdate({
-
-        //         {_id:userid}
-        //     })
-        // })
     }catch (err) {
         console.log('Error socket', err.message);
       }

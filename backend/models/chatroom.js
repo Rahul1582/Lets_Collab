@@ -18,14 +18,7 @@ const chatbody = {
     time:{
         type: String,
         required:true,
-    },
-    file:{
-        type: String,
-        required:true,
-    },
-    base64String: { type: String },
-
-    usermail: { type: String },
+    }
 };
 
 const chatroom = new Schema({

@@ -19,7 +19,7 @@ export default function Chatlist(props){
   const {setselectedroomid} = props;
 
   const [open, setopen] = useState(false);
-  const [userid, setuserid] = useState(false);
+  const [userid, setuserid] = useState('');
   const [roomtitle, setroomtitle] = useState('');
   const [allchatlists, setallchatlists] = useState([]);
 

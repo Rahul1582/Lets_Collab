@@ -28,6 +28,26 @@ router.get('/userid', verifytoken, (req,res)=>{
 
 })
 
+router.get('/username', verifytoken, (req,res)=>{
+
+    const userid = req.user.id;
+
+    User.findOne({_id: userid}, async (err,user)=>{
+
+        if(err){
+
+            return res.json({status:500 , message : "Internal Server Error"});
+        }
+
+        else{
+
+            return res.json({status:200 , message : "Successful", user});
+
+        }
+    })
+
+})
+
 router.get('/chatlist',verifytoken, (req,res)=>{
 
     const userid = req.user.id;
