@@ -7,8 +7,6 @@ export default function Chatbody() {
 
   const [selectedroomid,setselectedroomid] = useState('');
 
-  console.log(selectedroomid);
-
     return (
       <div className="main__chatbody">
         <ChatList setselectedroomid = {setselectedroomid}/>

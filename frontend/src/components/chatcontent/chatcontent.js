@@ -235,6 +235,7 @@ export default function Chatcontent(props) {
               );
             })}
           </div>
+          <div ref={messagesendref} />
         </div>
         <div className="content__footer">
           <div className="sendNewMessage">

@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+
 const socket = io.connect("http://localhost:8000/", {
   transports: ['websocket'],
 });
@@ -22,8 +23,6 @@ export default function Chatlist(props){
   const [userid, setuserid] = useState('');
   const [roomtitle, setroomtitle] = useState('');
   const [allchatlists, setallchatlists] = useState([]);
-
-  // useEffect(() => {}, [selectedroomid]);
 
   useEffect(() => {
        
@@ -101,6 +100,15 @@ export default function Chatlist(props){
           <i className="fa fa-plus"></i>
           <span>New conversation</span>
         </button>
+
+        {/* <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="success"
+            >
+              Join Room
+            </Button> */}
 
         <Dialog
         open={open}

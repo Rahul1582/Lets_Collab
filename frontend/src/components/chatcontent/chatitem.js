@@ -28,7 +28,7 @@ export default function Chatitem(props) {
     return (
       <div
         style={{ animationDelay: `0.8s` }}
-        className={`chat__item ${userid == id ? "" : "other"}`}
+        className={`chat__item ${userid === id ? "" : "other"}`}
       >
 
         <div className="chat__item__content">  
