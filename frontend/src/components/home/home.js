@@ -11,8 +11,8 @@ export default function Home() {
         <br></br>
 
         <div className="row align-items-center text-center text-md-left">
-          <div className="col-lg-4">
-            <h1 className="mb-3 display-2">LET'S COLLAB</h1>
+          <div className="col-lg-5">
+            <h1 className="mb-3 display-1">LET'S COLLAB</h1>
             <p className="mb-5 display-6">
             Meet, Chat and <br/> Collaborate in <br /> one place.
             </p>
@@ -31,7 +31,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="col-lg-8">
+          <div className="col-lg-7">
             <br></br>
             <img src={img1} className="img-fluid" alt="img" />
           </div>

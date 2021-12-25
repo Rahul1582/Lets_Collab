@@ -120,8 +120,6 @@ io.on('connection',(socket)=>{
                 time: time,
               };
 
-            console.log(finalmessage);
-
             Chatroom.findOneAndUpdate(
                 { _id: roomid },
                 { $push: { msgarray: finalmessage } },

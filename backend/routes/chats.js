@@ -196,6 +196,11 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
                 return res.json({status:400 , message : "User Already Joined"});
             }
 
+            else if(chatroom.joinedusers.length===10){
+                
+                return res.json({status:400 , message : "Already 10 Participants are there."});
+            }
+
             else{
 
                 Chatroom.findOneAndUpdate({_id:chatroomid},{$push:{joinedusers:userid}},{new:true},(err,chatroom)=>{

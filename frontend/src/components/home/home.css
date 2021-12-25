@@ -48,7 +48,7 @@
 
  .hero{
   width: auto;
-  height: auto ;
+  height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color:#282828;
