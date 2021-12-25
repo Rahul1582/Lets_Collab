@@ -12,6 +12,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import "./chatcontent.css";
 import ChatItem from "./chatitem";
 import { io } from 'socket.io-client';
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 
 const socket = io.connect("http://localhost:8000/", {
   transports: ['websocket'],
@@ -30,6 +32,7 @@ export default function Chatcontent(props) {
   const [textroomid, settextroomid] = useState('');
   const [msg, setmsg] = useState('');
   const [msgarray, setmsgarray] = useState([]);
+   const [showEmojis, setShowEmojis] = useState(false);
 
   const scrollToBottom = () => {
     messagesendref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -71,7 +74,6 @@ export default function Chatcontent(props) {
   }, [roomid]);
 
   useEffect(() => {
-    console.log('h');
     scrollToBottom();
   }, [msgarray]);
 
@@ -150,6 +152,14 @@ export default function Chatcontent(props) {
 
     };
 
+    const addEmoji = (e) => {
+      let sym = e.unified.split("-");
+      let codesArray = [];
+      sym.forEach((el) => codesArray.push("0x" + el));
+      let emoji = String.fromCodePoint(...codesArray);
+      setmsg(msg+ emoji);
+    };
+
     
     const leaveroom = () => {
       socket.emit('leave-room', { userid: userid, roomid: roomid });
@@ -171,6 +181,8 @@ export default function Chatcontent(props) {
   else{
 
         return(
+
+
 
         <div className="main__chatcontent">
         <div className="content__header">
@@ -222,7 +234,16 @@ export default function Chatcontent(props) {
         </div>
         <div className="content__body">
           <div className="chat__items">
-            {msgarray.map((itm, index) => {
+            <br/>
+          {msgarray.length === 0  ?
+
+<div className="heading1">
+
+      <h2>No chats are there in this Room.</h2>
+</div>
+
+:
+            (msgarray.map((itm, index) => {
               return (
                 <ChatItem
                   animationDelay={index + 2}
@@ -233,19 +254,36 @@ export default function Chatcontent(props) {
                   time = {itm.time}
                 />
               );
-            })}
+            })
+            )
+          }
           </div>
           <div ref={messagesendref} />
-        </div>
+        </div>      
         <div className="content__footer">
           <div className="sendNewMessage">
-            <button className="addFiles">
-              <i className="fa fa-plus"></i>
-            </button>
+       
+       <button className="button" onClick={() => setShowEmojis(!showEmojis)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </button>
             <input
               type="text"
               placeholder="Type a message here"
               onChange={onStateChange}
+              value={msg}
             />
             <button className="btnSendMsg" id="sendMsgBtn" type="submit" onClick={(e) =>
               handleSubmit(e, roomid, username, userid)
@@ -254,10 +292,14 @@ export default function Chatcontent(props) {
             </button>
           </div>
         </div>
+
+        {showEmojis && (
+            <div className="emoji">
+                 <Picker onSelect={addEmoji} style={{ position: 'absolute', bottom: '55px', right: '30px', left:'3px' }} />
+                 </div>
+              )}
       </div>
 
         );
-
-      }
-      
+      }  
   }

@@ -7,7 +7,7 @@
 .navbar{
     background-color:#282828;
     font-family: 'Bakbak One', cursive;
-    color: #4664ff;
+    color: #05F5D5;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -18,7 +18,7 @@
     text-align: center;
     justify-content: center;
     display: flex;
-    color: #4664ff;
+    color: #05F5D5;
     margin-left: 70px;
 
 }
@@ -31,7 +31,7 @@
 }
 
 .heading{
-    color: #4664ff;
+    color: #05F5D5;
     font-size: 40px;
     justify-content: center;
     padding-left: 15px;
