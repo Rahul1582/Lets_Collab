@@ -112,7 +112,6 @@ export default function SignUp() {
               label="Name"
               name="name"
               autoComplete="name"
-              autoFocus
               onChange={onchangename}
             />
             <TextField
@@ -124,7 +123,6 @@ export default function SignUp() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
               onChange={onchangeemail}
             />
             <TextField

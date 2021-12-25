@@ -92,19 +92,14 @@ export default function Chatlist(props) {
 
   return (
     <div className="main__chatlist">
-      <button className="btn" onClick={handleClickOpen}>
+      <button className="btn-new" onClick={handleClickOpen}>
         <i className="fa fa-plus"></i>
         <span>New conversation</span>
       </button>
 
-      {/* <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="success"
-            >
-              Join Room
-            </Button> */}
+      <button className="btn-nobg" onClick={handleClickOpen}>
+                <span fontFamily="Bakbak One">New conversation</span>
+      </button>
 
       <Dialog
         open={open}
@@ -117,7 +112,7 @@ export default function Chatlist(props) {
         <DialogContent>
           <TextField
             autoFocus
-            margin="dense"
+            margin="normal"
             id="roomTitle"
             label="Type Room Name"
             type="text"

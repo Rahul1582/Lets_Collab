@@ -31,6 +31,10 @@ export default function JoinRoom() {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
+  // useEffect(() => {
+  //   window.location.reload();
+  // },[]);
+
   const onchangeroomid = (e) => {
     setchatroomid(e.target.value);
   };

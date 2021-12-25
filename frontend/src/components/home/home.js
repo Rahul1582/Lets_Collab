@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import img1 from "../../images/home.jpg";
 import "./home.css";
@@ -17,17 +16,17 @@ export default function Home() {
               Meet, Chat and <br /> Collaborate in <br /> one place.
             </p>
             <Link to="/register">
-              <Button variant="contained" color="primary">
+              <button type="button" class="btn btn-primary">
                 Register
-              </Button>
+              </button>
             </Link>
 
             <br></br>
             <br></br>
             <Link to="/login">
-              <Button variant="contained" color="primary">
+              <button type="button" class="btn btn-primary" >
                 Login
-              </Button>
+              </button>
             </Link>
           </div>
 

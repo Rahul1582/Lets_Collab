@@ -180,8 +180,6 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
 
     const userid = req.user.id;
 
-    console.log(chatroomid);
-
     Chatroom.findById({_id:chatroomid},(err, chatroom) =>{
 
         if(err){
