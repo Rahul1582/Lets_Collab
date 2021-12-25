@@ -14,7 +14,7 @@ export default function Home() {
           <div className="col-lg-5">
             <h1 className="mb-3 display-1">LET'S COLLAB</h1>
             <p className="mb-5 display-6">
-            Meet, Chat and <br/> Collaborate in <br /> one place.
+              Meet, Chat and <br /> Collaborate in <br /> one place.
             </p>
             <Link to="/register">
               <Button variant="contained" color="primary">
@@ -39,7 +39,6 @@ export default function Home() {
       </div>
 
       <br></br>
-
     </div>
   );
 }
