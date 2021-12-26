@@ -97,10 +97,6 @@ export default function Chatlist(props) {
         <span>New conversation</span>
       </button>
 
-      <button className="btn-nobg" onClick={handleClickOpen}>
-                <span fontFamily="Bakbak One">New conversation</span>
-      </button>
-
       <Dialog
         open={open}
         onClose={handleClose}
@@ -145,7 +141,7 @@ export default function Chatlist(props) {
       <div className="chatlist__items">
         {allchatlists.length === 0 ? (
           <div className="chatlist__heading1">
-            <h2>No Rooms Created Or Joined</h2>
+            <h3>No Rooms Created Or Joined</h3>
           </div>
         ) : (
           allchatlists.map((chat, index) => {
