@@ -10,7 +10,7 @@ export default function Chatitem(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/chats/userid", {
+      .get("https://lets-collab-backend.herokuapp.com/chats/userid", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }

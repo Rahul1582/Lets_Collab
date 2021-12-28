@@ -47,7 +47,7 @@ export default function JoinRoom() {
 
     axios
       .post(
-        "http://localhost:8000/chats/invitelink/" + chatroomid,
+        "https://lets-collab-backend.herokuapp.com/chats/invitelink/" + chatroomid,
         {
           params: {
             chatroomid

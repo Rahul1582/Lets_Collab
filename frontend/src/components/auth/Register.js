@@ -53,7 +53,7 @@ export default function SignUp() {
     setSuccessful(false);
 
     axios
-      .post("http://localhost:8000/auth/register", {
+      .post("https://lets-collab-backend.herokuapp.com/auth/register", {
         name: name,
         email: email,
         password: password

@@ -15,7 +15,7 @@ import { io } from "socket.io-client";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 
-const socket = io.connect("http://localhost:8000/", {
+const socket = io.connect("https://lets-collab-backend.herokuapp.com/", {
   transports: ["websocket"]
 });
 
@@ -39,7 +39,7 @@ export default function Chatcontent(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/chats/chatroom/${roomid}`, {
+      .get(`https://lets-collab-backend.herokuapp.com/chats/chatroom/${roomid}`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
@@ -76,7 +76,7 @@ export default function Chatcontent(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/chats/userid", {
+      .get("https://lets-collab-backend.herokuapp.com/chats/userid", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
@@ -92,7 +92,7 @@ export default function Chatcontent(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/chats/username", {
+      .get("https://lets-collab-backend.herokuapp.com/chats/username", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
