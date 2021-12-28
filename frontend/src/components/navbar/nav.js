@@ -134,17 +134,6 @@ export default function Header() {
           <ul className="navbar-nav mr-auto">
             <li className="heading">LET'S COLLAB</li>
 
-            {/* <li className="navbar-item font active">
-              <Link
-                to="/"
-                className="nav-link"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                Home
-              </Link>
-            </li> */}
-
             <li className="navbar-item font">
               <Link
                 to="/register"
