@@ -45,7 +45,7 @@ export default function Chatcontent(props) {
         }
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setroomname(res.data.chatroom.title);
         setroommembers(res.data.usernames);
         settextroomid(res.data.chatroom._id);
@@ -55,22 +55,6 @@ export default function Chatcontent(props) {
         console.error(error);
       });
   }, [roomid]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8000/chats/chatroom/${roomid}`, {
-  //       headers: {
-  //         "x-access-token": localStorage.getItem("usertoken")
-  //       }
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setroommembers(res.data.usernames);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, [...roommembers]);
 
   useEffect(() => {
     // listener for latest message on selected room

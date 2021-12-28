@@ -1,69 +1,5 @@
-// import { Navbar } from 'responsive-navbar-react';
-// import 'responsive-navbar-react/dist/index.css';
-
-// export default function Nav(){
-
-//   const props = {
-//     items: [
-//       {
-//         text: 'Home',
-//         link: '/'
-//       },
-//       {
-//         text: 'About',
-//         link: '/about'
-//       },
-//       {
-//         text: 'Login',
-//         link: '/login'
-//       },
-//       {
-//         text: 'Register',
-//         link: '/register'
-//       },
-//       {
-//         text: 'Logout',
-//         link: '/'
-//       }
-//     ],
-//     logo: {
-//       text: 'MERN CHAT Application'
-//     },
-
-//     style: {
-//       barStyles: {
-//         background: '#282828',
-//         buttonColor: '#4664ff'
-
-//       }
-//       ,
-//       sidebarStyles: {
-//         background: '#222',
-//         buttonColor: 'white'
-//       },
-//       linkStyles: {
-//         color: 'white',
-//         fontSize: '25px',
-//         fontFamily: 'Bakbak One'
-//       },
-//       logoStyles: {
-//         fontSize: '25px',
-//         color: 'white',
-//         fontFamily:'Bakbak One'
-//       }
-//     }
-//   }
-
-//   return (
-//     <div className="home">
-//     	<Navbar {...props}/>
-//     </div>
-//   )
-// }
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Typography from "@mui/material/Typography";
 import "./nav.css";
 
 export default function Header() {
@@ -106,12 +42,12 @@ export default function Header() {
 
             <li className="navbar-item font active">
               <Link
-                to="/"
+                to="/useraccount"
                 className="nav-link"
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show"
               >
-                Home
+                User Account
               </Link>
             </li>
 
@@ -196,17 +132,9 @@ export default function Header() {
 
         <div className="collapse navbar-collapse" id="navbarSupported">
           <ul className="navbar-nav mr-auto">
-            <Typography
-              align="left"
-              color="#4462ff"
-              fontSize="35px"
-              fontFamily={"Bakbak One"}
-              paddingLeft={2}
-            >
-              MERN CHAT APPLICATION
-            </Typography>
+            <li className="heading">LET'S COLLAB</li>
 
-            <li className="navbar-item font active">
+            {/* <li className="navbar-item font active">
               <Link
                 to="/"
                 className="nav-link"
@@ -215,18 +143,7 @@ export default function Header() {
               >
                 Home
               </Link>
-            </li>
-
-            <li className="navbar-item font">
-              <Link
-                to="/details"
-                className="nav-link"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                Details
-              </Link>
-            </li>
+            </li> */}
 
             <li className="navbar-item font">
               <Link

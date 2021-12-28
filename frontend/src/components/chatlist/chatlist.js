@@ -7,7 +7,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import TextField from "@material-ui/core/TextField";
 
 const socket = io.connect("http://localhost:8000/", {
   transports: ["websocket"]
@@ -20,6 +19,7 @@ export default function Chatlist(props) {
   const [userid, setuserid] = useState("");
   const [roomtitle, setroomtitle] = useState("");
   const [allchatlists, setallchatlists] = useState([]);
+  const [searchbar, setsearchbar] = useState("");
 
   useEffect(() => {
     axios
@@ -46,7 +46,6 @@ export default function Chatlist(props) {
       })
       .then((res) => {
         setallchatlists(res.data.chatlists);
-        console.log(allchatlists.length);
       })
       .catch((error) => {
         console.error(error);
@@ -132,7 +131,12 @@ export default function Chatlist(props) {
       <br />
       <div className="chatList__search">
         <div className="search_wrap">
-          <input type="text" placeholder="Search Here" required />
+          <input
+            type="text"
+            placeholder="Search Rooms Here"
+            required
+            onChange={(e) => setsearchbar(e.target.value)}
+          />
           <button className="search-btn">
             <i className="fa fa-search"></i>
           </button>
@@ -144,17 +148,28 @@ export default function Chatlist(props) {
             <h3>No Rooms Created Or Joined</h3>
           </div>
         ) : (
-          allchatlists.map((chat, index) => {
-            return (
-              <ChatListItems
-                key={index}
-                name={chat.title}
-                id={chat._id}
-                animationDelay={index + 1}
-                setselectedroomid={setselectedroomid}
-              />
-            );
-          })
+          allchatlists
+            // eslint-disable-next-line
+            .filter((chat) => {
+              if (searchbar === "") {
+                return chat;
+              } else if (
+                chat.title.toLowerCase().includes(searchbar.toLowerCase())
+              ) {
+                return chat;
+              }
+            })
+            .map((chat, index) => {
+              return (
+                <ChatListItems
+                  key={index}
+                  name={chat.title}
+                  id={chat._id}
+                  animationDelay={index + 1}
+                  setselectedroomid={setselectedroomid}
+                />
+              );
+            })
         )}
       </div>
     </div>
