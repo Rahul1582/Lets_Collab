@@ -8,6 +8,7 @@ const auth = require("./routes/auth");
 const chats = require("./routes/chats");
 const User = require("./models/user");
 const Chatroom = require("./models/chatroom");
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
