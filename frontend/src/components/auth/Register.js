@@ -70,7 +70,7 @@ export default function SignUp() {
 
         if (valid && res.data.status === 200) {
           setSuccessful(true);
-          // window.location='/login';
+          window.location = "/login";
         }
       })
       .catch(function (err) {

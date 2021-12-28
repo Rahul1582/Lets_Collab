@@ -7,7 +7,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
 const socket = io.connect("http://localhost:8000/", {
@@ -101,28 +100,29 @@ export default function Chatlist(props) {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="sm"
+        fullWidth="true"
       >
         <DialogTitle id="form-dialog-title" fontFamily="Bakbak One">
           New Room
         </DialogTitle>
+
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="normal"
-            id="roomTitle"
-            label="Type Room Name"
-            type="text"
-            fullWidth
-            onChange={handleChange}
-          />
+          <div className="dia">
+            <input
+              type="text"
+              placeholder="Type Room Name(Max 25 Characters)"
+              onChange={handleChange}
+            />
+          </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <button onClick={handleClose} type="button" class="btn btn-success">
             Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
+          </button>
+          <button onClick={handleSubmit} type="button" class="btn btn-success">
             Done
-          </Button>
+          </button>
         </DialogActions>
       </Dialog>
       <br />

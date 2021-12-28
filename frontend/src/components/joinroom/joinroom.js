@@ -120,6 +120,10 @@ export default function JoinRoom() {
             >
               Join Room
             </Button>
+{/* 
+            <button type="button" class="btn btn-primary">
+                Register
+              </button> */}
             <Grid
               container
               spacing={0}
