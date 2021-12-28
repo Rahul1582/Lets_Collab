@@ -35,6 +35,7 @@ const server = http.createServer(app);
 // })
 
 // create a socket
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
