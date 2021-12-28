@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const server = http.createServer(app);
+var server = http.createServer(app);
 
 // User.pre('update',function(next) {
 //     this.model('Chatroom').update(
@@ -166,12 +166,10 @@ io.on("connection", (socket) => {
   }
 });
 
-const PORT = process.env.PORT || 8000;
-
 app.get("/", (req, res) => {
   res.send("Welcome to Lets_Collab");
 });
 
-server.listen(PORT, () =>
+server.listen(process.env.PORT || 8000, () =>
   console.log(`Server Started and running on port ${PORT}`)
 );
