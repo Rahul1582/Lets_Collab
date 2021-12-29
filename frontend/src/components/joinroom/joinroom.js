@@ -12,6 +12,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Nav from "../navbar/nav";
 
+const {config}  = require("../api");  
+
+var KEY = config.API_KEY;
+
 const themeDark = createTheme({
   palette: {
     background: {
@@ -47,7 +51,7 @@ export default function JoinRoom() {
 
     axios
       .post(
-        "https://lets-collab-backend.herokuapp.com/chats/invitelink/" +
+        `${KEY}/chats/invitelink/` +
           chatroomid,
         {
           params: {

@@ -17,7 +17,11 @@ import "emoji-mart/css/emoji-mart.css";
 import BounceLoader from "react-spinners/BounceLoader";
 import { css } from "@emotion/react";
 
-const socket = io.connect("https://lets-collab-backend.herokuapp.com", {
+const {config}  = require("../api");  
+
+var KEY = config.API_KEY;
+
+const socket = io.connect(`${KEY}`, {
   transports: ["websocket"]
 });
 
@@ -56,7 +60,7 @@ export default function Chatcontent(props) {
   useEffect(() => {
     axios
       .get(
-        `https://lets-collab-backend.herokuapp.com/chats/chatroom/${roomid}`,
+        `${KEY}/chats/chatroom/${roomid}`,
         {
           headers: {
             "x-access-token": localStorage.getItem("usertoken")
@@ -95,7 +99,7 @@ export default function Chatcontent(props) {
 
   useEffect(() => {
     axios
-      .get("https://lets-collab-backend.herokuapp.com/chats/userid", {
+      .get(`${KEY}/chats/userid`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
@@ -111,7 +115,7 @@ export default function Chatcontent(props) {
 
   useEffect(() => {
     axios
-      .get("https://lets-collab-backend.herokuapp.com/chats/username", {
+      .get(`${KEY}/chats/username`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
