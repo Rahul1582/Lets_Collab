@@ -51,7 +51,7 @@ export default function SignIn() {
     setSuccessful(false);
 
     axios
-      .post("http://lets-collab-backend.herokuapp.com/auth/login", {
+      .post("https://lets-collab-backend.herokuapp.com/auth/login", {
         email: email,
         password: password
       })
