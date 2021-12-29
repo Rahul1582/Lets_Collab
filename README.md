@@ -41,19 +41,19 @@
 
 ### Features and Functionalities 😃:-
 
-- This is a Fully Functioning Blogging Website with `User Authentication` And `Authorization`.
-
-- Here Users Can see `all the Posts` posted in this Website `without registering` themselves and `even without logging` in to the` Website`.
-
-- In Order to write a `New Post`, the User has to `get registered themselves first` if they are using this platform for first time or directly `login` if they had `registered themselves previously`.
-
-- After logging in the `User` can `Write a post, Update an Existing Post , Search posts by Author Name` ,`View its created posts`.
-
-<!-- - While creating a `new post` `anonymous post` creations are `handled` by using the `bad-words package` of npm. Still it does not cover all the bad words but can `bypass` some of them. Its a `request` for all the `users` using this platform to `take care of the words` they use while `creating a post`. -->
-
-- `Once` a `User logs in` you are good to go and Whenever the user `next time visits this website` the user is `not reqiuired to log in Again`.
-
-- This Application is using `MongoDB Atlas's` free Cloud Service as the `Database Service`.
+- [x] Home Page.
+- [x] Login Page.
+- [x] Register Page.
+- [x] Navbar.
+- [x] Dashboard.
+- [x] User Account Page.
+- [x] Create New Room Functionality.
+- [x] Join Existing Room.
+- [x] View Each Room Participants.
+- [x] Leave Room Functionality.
+- [x] Realtime Messaging Functionality.
+- [x] View all Created/Joined Rooms.
+- [x] Logout.
 
 ### Tech Stack 💻
 
@@ -92,13 +92,7 @@
 
 <br>
   <p align="center">
-<img src ="./readmeimages/demo1.gif"  width=800 height=400>  
-</p>
-<br>
-
-<br>
-  <p align="center">
-<img src ="./readmeimages/demo2.gif"  width=800 height=400>  
+<img src ="./readmeimages/demo.gif"  width=800 height=450>  
 </p>
 <br>
 
