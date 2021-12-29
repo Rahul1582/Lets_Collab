@@ -92,19 +92,19 @@
 
 <br>
   <p align="center">
-<img src ="./readmeimages/img7.JPG"  width=800 height=450>  
+<img src ="./readmeimages/img7.JPG"  width=800 height=400>  
 </p>
 <br>
 
 <br>
   <p align="center">
-<img src ="./readmeimages/img8.JPG"  width=800 height=450>  
+<img src ="./readmeimages/img8.JPG"  width=800 height=400>  
 </p>
 <br>
 
 <br>
   <p align="center">
-<img src ="./readmeimages/img9.JPG"  width=800 height=450>  
+<img src ="./readmeimages/img9.JPG"  width=800 height=400>  
 </p>
 <br>
 
