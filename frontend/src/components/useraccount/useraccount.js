@@ -31,7 +31,7 @@ export default function Useraccount() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/chats/username`, {
+      .get("https://lets-collab-backend.herokuapp.com/chats/username", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }

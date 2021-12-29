@@ -53,7 +53,7 @@ export default function SignUp() {
     setSuccessful(false);
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/auth/register`, {
+      .post("https://lets-collab-backend.herokuapp.com/auth/register", {
         name: name,
         email: email,
         password: password
