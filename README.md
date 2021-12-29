@@ -90,6 +90,18 @@
 </p>
 <br>
 
+<br>
+  <p align="center">
+<img src ="./readmeimages/demo1.gif"  width=800 height=400>  
+</p>
+<br>
+
+<br>
+  <p align="center">
+<img src ="./readmeimages/demo2.gif"  width=800 height=400>  
+</p>
+<br>
+
 ### 🤝 How To Contribute?
 
 - Take a look at the Existing Issues or create your own Issues!

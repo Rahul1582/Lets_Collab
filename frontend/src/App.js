@@ -13,6 +13,7 @@ import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/dashboard";
 import JoinRoom from "./components/joinroom/joinroom";
 import Useraccount from "./components/useraccount/useraccount";
+import Errorpage from "./components/404";
 
 const PrivateRoute = (privateRouteProps) => {
   const { isAuthenticated, component: Component, path } = privateRouteProps;
@@ -62,6 +63,7 @@ function App() {
           component={Useraccount}
           isAuthenticated={loggedin}
         />
+        <Route component = {Errorpage}/>
       </Switch>
     </Router>
   );

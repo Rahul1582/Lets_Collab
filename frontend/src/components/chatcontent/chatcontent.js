@@ -161,7 +161,7 @@ export default function Chatcontent(props) {
       scrollToBottom();
     }
 
-    console.log(msg);
+    setmsg("");
   };
 
   const addEmoji = (e) => {
