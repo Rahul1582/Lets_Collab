@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const validregister = require("../Validation/register");
 const validlogin = require("../Validation/login");
 const User = require("../models/user");
-const secret = require("../config/sectoken");
+const secret = require("../config_details/sectoken");
 
 const saltRounds = 8;
 

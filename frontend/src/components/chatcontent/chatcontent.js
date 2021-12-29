@@ -14,7 +14,7 @@ import ChatItem from "./chatitem";
 import { io } from "socket.io-client";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
-import HashLoader from "react-spinners/HashLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 import { css } from "@emotion/react";
 
 const socket = io.connect("https://lets-collab-backend.herokuapp.com", {
@@ -50,7 +50,7 @@ export default function Chatcontent(props) {
     setloading(true);
     setTimeout(() => {
       setloading(false);
-    }, 4000);
+    }, 6000);
   }, [roomid]);
 
   useEffect(() => {
@@ -249,8 +249,8 @@ export default function Chatcontent(props) {
           <div>
             <br></br>
             {loading ? (
-              <HashLoader
-                color={"#11DDED"}
+              <BounceLoader
+                color={"#05F5D5"}
                 loading={loading}
                 css={override}
                 size={100}

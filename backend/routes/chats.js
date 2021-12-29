@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const verifytoken = require("../middleware/verifytoken");
 const Chatroom = require("../models/chatroom");
 const User = require("../models/user");
-const transporter = require("../config/nodemailer");
+const transporter = require("../config_details/nodemailer");
 
 // Get the full chat list
 
