@@ -51,7 +51,7 @@ export default function SignIn() {
     setSuccessful(false);
 
     axios
-      .post("https://lets-collab-backend.herokuapp.com/auth/login", {
+      .post("http://lets-collab-backend.herokuapp.com/auth/login", {
         email: email,
         password: password
       })
@@ -66,7 +66,9 @@ export default function SignIn() {
 
         if (valid && res.data.status === 200) {
           setSuccessful(true);
+          // console.log(res.data);
           localStorage.setItem("usertoken", res.data.token);
+          localStorage.setItem("userid", res.data.id);
           localStorage.setItem("loggedin", true);
 
           window.location = "/dashboard";

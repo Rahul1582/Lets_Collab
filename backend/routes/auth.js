@@ -112,7 +112,7 @@ router.post("/login" ,(req,res,next)=> {
                       }
 
                       else{
-                        return res.json({status:200,message: "Login Success", token:token ,isValid});
+                        return res.json({status:200,message: "Login Success", token:token ,id:user.id,isValid});
                       }
                       
                    });

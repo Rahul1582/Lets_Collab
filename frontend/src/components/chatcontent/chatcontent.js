@@ -14,10 +14,18 @@ import ChatItem from "./chatitem";
 import { io } from "socket.io-client";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
+import HashLoader from "react-spinners/HashLoader";
+import { css } from "@emotion/react";
 
 const socket = io.connect("https://lets-collab-backend.herokuapp.com/", {
   transports: ["websocket"]
 });
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 export default function Chatcontent(props) {
   const roomid = props.selectedroomid;
@@ -32,18 +40,29 @@ export default function Chatcontent(props) {
   const [msg, setmsg] = useState("");
   const [msgarray, setmsgarray] = useState([]);
   const [showEmojis, setShowEmojis] = useState(false);
+  const [loading, setloading] = useState(false);
 
   const scrollToBottom = () => {
     messagesendref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
+    setloading(true);
+    setTimeout(() => {
+      setloading(false);
+    }, 4000);
+  }, [roomid]);
+
+  useEffect(() => {
     axios
-      .get(`https://lets-collab-backend.herokuapp.com/chats/chatroom/${roomid}`, {
-        headers: {
-          "x-access-token": localStorage.getItem("usertoken")
+      .get(
+        `https://lets-collab-backend.herokuapp.com/chats/chatroom/${roomid}`,
+        {
+          headers: {
+            "x-access-token": localStorage.getItem("usertoken")
+          }
         }
-      })
+      )
       .then((res) => {
         // console.log(res.data);
         setroomname(res.data.chatroom.title);
@@ -227,25 +246,37 @@ export default function Chatcontent(props) {
           </div>
         </div>
         <div className="content__body">
-          <div className="chat__items">
-            <br />
-            {msgarray.length === 0 ? (
-              <div className="heading1">
-                <h2>No chats are there in this Room.</h2>
-              </div>
+          <div>
+            <br></br>
+            {loading ? (
+              <HashLoader
+                color={"#11DDED"}
+                loading={loading}
+                css={override}
+                size={100}
+              />
             ) : (
-              msgarray.map((itm, index) => {
-                return (
-                  <ChatItem
-                    animationDelay={index + 2}
-                    key={itm.key}
-                    userid={itm.userid}
-                    msg={itm.message}
-                    name={itm.username}
-                    time={itm.time}
-                  />
-                );
-              })
+              <div className="chat__items">
+                <br />
+                {msgarray.length === 0 ? (
+                  <div className="heading1">
+                    <h2>No chats are there in this Room.</h2>
+                  </div>
+                ) : (
+                  msgarray.map((itm, index) => {
+                    return (
+                      <ChatItem
+                        animationDelay={index + 2}
+                        key={itm.key}
+                        userid={itm.userid}
+                        msg={itm.message}
+                        name={itm.username}
+                        time={itm.time}
+                      />
+                    );
+                  })
+                )}
+              </div>
             )}
           </div>
           <div ref={messagesendref} />

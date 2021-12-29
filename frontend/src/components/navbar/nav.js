@@ -104,6 +104,7 @@ export default function Header() {
                 onClick={() => {
                   window.localStorage.removeItem("loggedin");
                   window.localStorage.removeItem("usertoken");
+                  window.localStorage.clear();
                   window.location = "/";
                 }}
               >

@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
 export default function Chatitem(props) {
+
   const id = props.userid;
   const name = props.name;
   const time = props.time;
 
-  const [userid, setuserid] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("https://lets-collab-backend.herokuapp.com/chats/userid", {
-        headers: {
-          "x-access-token": localStorage.getItem("usertoken")
-        }
-      })
-      .then((res) => {
-        setuserid(res.data.userid);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [userid]);
+  const userid = localStorage.getItem('userid');
 
   return (
     <div
-      style={{ animationDelay: `0.8s` }}
+      style={{ animationDelay: `0.1s` }}
       className={`chat__item ${userid === id ? "" : "other"}`}
     >
       <div className="chat__item__content">

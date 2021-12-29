@@ -126,7 +126,7 @@ export default function Chatlist(props) {
       </Dialog>
       <br />
       <div className="chatlist__heading">
-        <h2>ALL ROOMS</h2>
+        <h2>JOINED ROOMS</h2>
       </div>
       <br />
       <div className="chatList__search">
