@@ -1,5 +1,5 @@
 function sectoken(){
-    return `${process.env.SECTOKEN}`;
+    return "rahul158";
 }
 
 module.exports={sectoken};

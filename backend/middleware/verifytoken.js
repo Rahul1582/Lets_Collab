@@ -1,5 +1,5 @@
 const user = require("../models/user");
-const secret = require("../config/sectoken");
+const secret = require("../Config/sectoken");
 const jwt = require("jsonwebtoken");
 
 function verifyToken(req, res, next) {

@@ -7,7 +7,6 @@ module.exports = data => {
 
     let {email , password} =data;
 
-
     if(!isEmpty(email)){
         email=email;
     }
