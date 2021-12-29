@@ -12,10 +12,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Nav from "../navbar/nav";
 
-const {config}  = require("../api");  
-
-var KEY = config.API_KEY;
-
 const themeDark = createTheme({
   palette: {
     background: {
@@ -35,7 +31,7 @@ export default function Useraccount() {
 
   useEffect(() => {
     axios
-      .get(`${KEY}/chats/username`, {
+      .get("https://lets-collab-backend.herokuapp.com/chats/username", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }

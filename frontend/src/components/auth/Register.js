@@ -12,10 +12,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const {config}  = require("../api");  
-
-var KEY = config.API_KEY;
-
 const themeDark = createTheme({
   palette: {
     background: {
@@ -57,7 +53,7 @@ export default function SignUp() {
     setSuccessful(false);
 
     axios
-      .post(`${KEY}/auth/register`, {
+      .post("https://lets-collab-backend.herokuapp.com/auth/register", {
         name: name,
         email: email,
         password: password

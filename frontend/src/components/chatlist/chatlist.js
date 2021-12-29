@@ -8,11 +8,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const {config}  = require("../api");  
-
-var KEY = config.API_KEY;
-
-const socket = io.connect(`${KEY}/`, {
+const socket = io.connect("https://lets-collab-backend.herokuapp.com/", {
   transports: ["websocket"]
 });
 
@@ -27,7 +23,7 @@ export default function Chatlist(props) {
 
   useEffect(() => {
     axios
-      .get(`${KEY}/chats/userid`, {
+      .get("https://lets-collab-backend.herokuapp.com/chats/userid", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
@@ -42,7 +38,7 @@ export default function Chatlist(props) {
 
   useEffect(() => {
     axios
-      .get(`${KEY}/chats/chatlist`, {
+      .get("https://lets-collab-backend.herokuapp.com/chats/chatlist", {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
