@@ -28,7 +28,7 @@
 
 ```bash
  npm install
- npm run install-client
+ npm run clientinstall
 ```
 
 **3. Now start the React and Node server together by running the following command :-**

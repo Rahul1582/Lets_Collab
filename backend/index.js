@@ -8,6 +8,7 @@ const auth = require("./routes/auth");
 const chats = require("./routes/chats");
 const User = require("./models/user");
 const Chatroom = require("./models/chatroom");
+const dotenv = require('dotenv');
 require("dotenv").config();
 
 const app = express();

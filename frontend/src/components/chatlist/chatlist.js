@@ -8,7 +8,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const socket = io.connect("https://lets-collab-backend.herokuapp.com/", {
+const socket = io.connect(`${process.env.REACT_APP_API_URL}/`, {
   transports: ["websocket"]
 });
 
@@ -23,14 +23,13 @@ export default function Chatlist(props) {
 
   useEffect(() => {
     axios
-      .get("https://lets-collab-backend.herokuapp.com/chats/userid", {
+      .get(`${process.env.REACT_APP_API_URL}/chats/userid`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
       })
       .then((res) => {
         setuserid(res.data.userid);
-        // console.log(userid);
       })
       .catch((error) => {
         console.error(error);
@@ -39,7 +38,7 @@ export default function Chatlist(props) {
 
   useEffect(() => {
     axios
-      .get("https://lets-collab-backend.herokuapp.com/chats/chatlist", {
+      .get(`${process.env.REACT_APP_API_URL}/chats/chatlist`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }

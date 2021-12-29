@@ -47,7 +47,7 @@ export default function JoinRoom() {
 
     axios
       .post(
-        "https://lets-collab-backend.herokuapp.com/chats/invitelink/" + chatroomid,
+        `${process.env.REACT_APP_API_URL}/chats/invitelink/` + chatroomid,
         {
           params: {
             chatroomid
@@ -69,6 +69,7 @@ export default function JoinRoom() {
         }
       })
       .catch(function (err) {
+        console.log(err);
         setMessage("Check your parameters. Joining Not Successful!!");
         setSuccessful(false);
       });

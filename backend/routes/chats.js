@@ -187,7 +187,8 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
             return res.json({status:500 , message : "Room Doesnot Exists"});
         }
 
-        else{
+        else if(chatroom!=null)
+        {
 
             if(chatroom.joinedusers.includes(userid)){
 
@@ -208,6 +209,7 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
                         return res.json({status:500 , message : "Internal Server Error while Joining"});
                     }
 
+
                     else{
 
                         User.findOneAndUpdate({_id:userid},{$push:{joinedrooms:chatroomid}},{new:true},(err,user)=>{
@@ -227,10 +229,15 @@ router.post('/invitelink/:chatroomid',verifytoken,(req,res)=>{
 
                     }
                 })
-            }
 
 
         }
+        
+    }
+
+    else{
+        return res.json({status:500 , message : "Room Doesnot Exists"});
+    }
     })
 
 
